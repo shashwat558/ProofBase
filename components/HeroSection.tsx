@@ -3,8 +3,9 @@
 import React from 'react';
 import { motion} from "framer-motion";
 
-import Unchain from './Chain';
+import {Unchain} from './Chain';
 import NftCard from './HeroCard';
+import CoinSolana from './ui/solanaCoin';
 const HeroSection = () => {
 
   const containerVariants = {
@@ -80,6 +81,8 @@ const HeroSection = () => {
   return (
     <div className='min-w-screen min-h-[85vh] md:min-h-[90vh] flex items-center justify-center p-5 relative overflow-hidden backdrop-blur-xl'>
 
+      
+
         <motion.div
         className="absolute inset-0 -z-10 blur-sm " 
         variants={backgroundSplineVariants}
@@ -88,6 +91,7 @@ const HeroSection = () => {
       >
         <Unchain />
         </motion.div>
+        
      
 
       <motion.div
@@ -124,7 +128,7 @@ const HeroSection = () => {
          
           <motion.button
              variants={subheadingVariants} 
-             className='mt-6 px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105 text-lg'
+             className='mt-6 px-8 py-3 bg-gradient-to-bl from-gray-900 to-gray-700 text-white font-semibold rounded-lg  transition-all duration-300 transform hover:scale-105 text-lg'
            >
              Get Started
            </motion.button>

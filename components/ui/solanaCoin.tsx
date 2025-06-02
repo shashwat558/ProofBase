@@ -8,14 +8,17 @@ const Spline = dynamic(() => import('@splinetool/react-spline').then(mod => mod.
   ssr: false,
 })
 
-export function Unchain() {
+
+
+export default function Home() {
   return (
     <main>
       <Spline
-        scene="https://prod.spline.design/hcFbTgeftE4jkout/scene.splinecode" 
-        style={{ width: '100%', height: '100%', minHeight: '600px', rotate: "100deg"}}
+        scene="https://prod.spline.design/dAdgigAj9dwps0ou/scene.splinecode" 
+
+        className='min-w-[1200px] h-[600px] bg-transparent'
+        style={{ scale: "0.45",}}
       />
     </main>
   );
 }
-

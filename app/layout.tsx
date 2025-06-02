@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Roboto_Mono } from "next/font/google";
+import { Host_Grotesk, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
-const roboto = Roboto_Mono({
+const roboto = Host_Grotesk({
   subsets: ["latin"],
   weight: "400"
 })
