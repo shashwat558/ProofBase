@@ -27,7 +27,7 @@ export const About = () => {
         whileInView="show"
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 1 }}
-        className="w-[100vw] bg-black min-h-[60vh] flex items-center justify-center py-5 px-4 sm:px-6 lg:px-8 border-r-0 border-l-0 border-t-[1px] border-gray-600"
+        className="w-[100vw] bg-black min-h-[70vh] flex items-center justify-center py-5 px-4 sm:px-6 lg:px-8 border-r-0 border-l-0 border-t-[1px] border-gray-600"
       >
         <div className="w-full max-w-6xl h-full flex flex-col lg:flex-row items-center lg:gap-40  rounded-2xl p-8">
           

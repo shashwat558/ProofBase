@@ -73,7 +73,7 @@ export const WhySolana = () => {
             </motion.div>
             
             <motion.p variants={itemVariants} className="text-xl text-gray-400 leading-relaxed">
-              ProofBase harnesses Solana's high-performance blockchain to deliver unparalleled speed,
+              ProofBase harnesses Solana&apos;s high-performance blockchain to deliver unparalleled speed,
               transparency, and ownership for developers and builders.
             </motion.p>
             

@@ -5,7 +5,34 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Coins, Search, Zap } from "lucide-react"
 import Image from "next/image"
 import {motion} from "framer-motion"
+const headingVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 80,
+        damping: 15,
+        duration: 1,
+      },
+    },
+  };
 
+  const subheadingVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 80,
+        damping: 15,
+        duration: 1,
+        delay: 0.2, 
+      },
+    },
+  };
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-black text-white">
@@ -13,23 +40,23 @@ export default function AboutPage() {
       <section className="relative overflow-hidden py-20 px-4 sm:py-32">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-transparent" />
         <div className="relative max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-400 to-gray-600 bg-clip-text text-transparent">
+          <motion.h1 variants={headingVariants} initial="hidden" animate="visible" className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-400 to-gray-600 bg-clip-text text-transparent">
             Reimagining Work.
             <br />
             <span className="text-cyan-400">On-Chain.</span>
-          </h1>
-          <p className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed text-transparent bg-gradient-to-br from-gray-100 via-gray-300 to-gray-500 bg-clip-text drop-shadow-[2px_2px_1px_rgba(0,0,0,0.5)]">
+          </motion.h1>
+          <motion.p variants={subheadingVariants} initial="hidden" animate="visible" className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed text-transparent bg-gradient-to-br from-gray-100 via-gray-300 to-gray-500 bg-clip-text drop-shadow-[2px_2px_1px_rgba(0,0,0,0.5)]">
             ProofBase is a decentralized job platform where your credentials are verifiable, your achievements are
             immutable, and your opportunities are permissionless. Say goodbye to gatekeepers. Say hello to proof-driven
             hiring.
-            </p>
+            </motion.p>
 
         </div>
       </section>
 
       {/* How It Works Section */}
       <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
+        <motion.div initial={{opacity: 0, y:100}} animate={{opacity:1, y:0}} transition={{duration:0.3}} className="max-w-6xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16 text-cyan-400">How It Works</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {/* Card 1 */}
@@ -74,7 +101,7 @@ export default function AboutPage() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Why ProofBase Section */}
