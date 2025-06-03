@@ -1,7 +1,6 @@
 "use client"
-import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-
+import { useState, useEffect } from "react"
+import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "framer-motion"
 
 const HamburgerIcon = ({ isOpen, toggle }) => (
   <motion.button
@@ -11,63 +10,74 @@ const HamburgerIcon = ({ isOpen, toggle }) => (
     whileTap={{ scale: 0.9 }}
   >
     <motion.div
-      className="w-6 h-0.5 bg-gray-100 rounded-sm"
+      className="w-6 h-0.5 bg-gray-700 rounded-sm"
       variants={{
         closed: { rotate: 0, y: 0 },
-        open: { rotate: 45, y: 8 }
+        open: { rotate: 45, y: 8 },
       }}
       animate={isOpen ? "open" : "closed"}
-      transition={{ duration: 0.3 }}
-    ></motion.div>
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+    />
     <motion.div
-      className="w-6 h-0.5 bg-gray-100 rounded-sm my-1.5"
+      className="w-6 h-0.5 bg-gray-700  rounded-sm my-1.5"
       variants={{
         closed: { opacity: 1 },
-        open: { opacity: 0 }
+        open: { opacity: 0 },
       }}
       animate={isOpen ? "open" : "closed"}
-      transition={{ duration: 0.1 }}
-    ></motion.div>
+      transition={{ duration: 0.2 }}
+    />
     <motion.div
-      className="w-6 h-0.5 bg-gray-100 rounded-sm"
+      className="w-6 h-0.5 bg-slate-700  rounded-sm"
       variants={{
         closed: { rotate: 0, y: 0 },
-        open: { rotate: -45, y: -8 }
+        open: { rotate: -45, y: -8 },
       }}
       animate={isOpen ? "open" : "closed"}
-      transition={{ duration: 0.3 }}
-    ></motion.div>
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+    />
   </motion.button>
-);
-
+)
 
 const Navbar = () => {
-  const { scrollY } = useScroll();
-  const [hidden, setHidden] = useState(false); 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { scrollY } = useScroll()
+  const [hidden, setHidden] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   
+  const navbarOpacity = useTransform(scrollY, [0, 100], [0.95, 0.98])
+  const navbarScale = useTransform(scrollY, [0, 100], [1, 0.98])
+  const navbarBlur = useTransform(scrollY, [0, 100], [8, 16])
+
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) { 
-        setIsMobileMenuOpen(false);
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false)
       }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
+    }
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious();
+    const previous = scrollY.getPrevious()
+
+   
     if (latest > previous && latest > 150) {
-      setHidden(true);
+      setHidden(true)
     } else {
-      setHidden(false);
+      setHidden(false)
     }
-    
-    if (isMobileMenuOpen && latest > (previous ?? 0) + 20 ) setIsMobileMenuOpen(false);
-  });
+
+    // Track if page is scrolled for styling changes
+    setScrolled(latest > 50)
+
+    // Close mobile menu on scroll
+    if (isMobileMenuOpen && latest > (previous ?? 0) + 20) {
+      setIsMobileMenuOpen(false)
+    }
+  })
 
   const navVariants = {
     visible: {
@@ -75,84 +85,107 @@ const Navbar = () => {
       opacity: 1,
       transition: {
         type: "spring",
-        stiffness: 80,
-        damping: 15,
-        duration: 0.5,
-        delay: 0.2,
-      }
+        stiffness: 100,
+        damping: 20,
+        duration: 0.6,
+      },
     },
-    hidden: { y: "-120%", opacity: 0, transition: { duration: 0.3 } }, // 
+    hidden: {
+      y: "-100%",
+      opacity: 0,
+      transition: {
+        duration: 0.4,
+        ease: "easeInOut",
+      },
+    },
     initial: {
       y: -100,
       opacity: 0,
-    }
-  };
+    },
+  }
 
   const desktopLinkItemVariants = {
     hover: {
-      scale: 1.1,
-      color: "#E5E7EB",
-      transition: { type: "spring", stiffness: 300, damping: 10 }
+      y: -2,
+      color: "#ffffff",
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 25,
+        duration: 0.2,
+      },
     },
-    tap: { scale: 0.95 }
-  };
+    tap: {
+      scale: 0.98,
+      y: 0,
+    },
+  }
 
   const logoVariants = {
     hover: {
-      scale: 1.05,
-      textShadow: "0px 0px 8px rgba(192, 132, 252, 0.5)",
-      transition: { type: "spring", stiffness: 300 }
+      scale: 1.02,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 25,
+      },
     },
-    tap: { scale: 0.98 }
-  };
+    tap: { scale: 0.98 },
+  }
 
-  
   const mobileMenuVariants = {
     open: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
         type: "spring",
-        stiffness: 120,
-        damping: 20,
-        staggerChildren: 0.07, 
-      }
+        stiffness: 200,
+        damping: 25,
+        staggerChildren: 0.08,
+        delayChildren: 0.1,
+      },
     },
     closed: {
       opacity: 0,
-      y: "-30%", 
+      y: -20,
+      scale: 0.95,
       transition: {
         duration: 0.3,
-        when: "afterChildren", 
+        ease: "easeInOut",
+        when: "afterChildren",
         staggerChildren: 0.05,
-        staggerDirection: -1
-      }
-    }
-  };
+        staggerDirection: -1,
+      },
+    },
+  }
 
-  
   const mobileLinkItemVariants = {
     open: {
       y: 0,
       opacity: 1,
-      transition: { type: "spring", stiffness: 200, damping: 15 }
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 25,
+      },
     },
     closed: {
-      y: 30, 
+      y: 20,
       opacity: 0,
-      transition: { duration: 0.2 }
+      transition: { duration: 0.2 },
     },
     hover: {
-        scale: 1.05,
-        color: "#C7D2FE", 
-        transition: { duration: 0.2}
+      x: 8,
+      color: "#334155",
+      transition: { duration: 0.2 },
     },
     tap: {
-        scale: 0.95
-    }
-  };
+      scale: 0.98,
+    },
+  }
 
-  const navLinks = ['About', 'Contact', 'How it works'];
+  const navLinks = ["About", "Contact", "How it works"]
 
   return (
     <>
@@ -160,43 +193,66 @@ const Navbar = () => {
         variants={navVariants}
         initial="initial"
         animate={hidden ? "hidden" : "visible"}
-        
-        className={`w-full fixed top-5 z-50 flex justify-center items-center`}
+        style={{
+          opacity: navbarOpacity,
+          scale: navbarScale,
+        }}
+        className="w-full fixed top-4 z-50 flex justify-center items-center px-4"
       >
         <motion.div
-          className='xl:w-2/3 md:p-3 max-sm:p-4 rounded-xl w-[90%] md:w-full p-5 border-[0.5px] border-gray-600/50 bg-gray-900/80 backdrop-blur-md shadow-2xl shadow-purple-500/30'
-          
+          className={`
+            xl:w-2/3 w-full max-w-4xl mx-auto px-6 py-4 rounded-2xl
+            transition-all duration-500 ease-out 
+            ${
+              scrolled
+                ? " dark:bg-slate-900/90 border border-slate-200/50 dark:border-slate-700/50 shadow-lg shadow-slate-900/5"
+                : " dark:bg-slate-900/70 border border-slate-200/30 dark:border-slate-700/30 shadow-sm"
+            }
+            backdrop-blur-xl
+          `}
+          style={{
+            backdropFilter: `blur(${navbarBlur}px)`,
+          }}
         >
-          <motion.div className='flex items-center justify-between'>
-            <motion.div
-              className='flex h-full items-center gap-3'
-              variants={logoVariants}
-              whileHover="hover"
-              whileTap="tap"
-            >
-              <motion.h1 className='text-xl sm:text-2xl text-gray-100 font-bold mb-1 cursor-pointer'>
+          <motion.div className="flex items-center justify-between">
+            <motion.div className="flex h-full items-center" variants={logoVariants} whileHover="hover" whileTap="tap">
+              <motion.h1 className="text-2xl sm:text-3xl text-gray-300 font-bold cursor-pointer tracking-tight">
                 ProofBase
               </motion.h1>
             </motion.div>
 
-            
-            <motion.div className='hidden md:flex items-center gap-3 md:mr-5'>
-              <motion.ul className='flex items-center gap-5'>
-                {navLinks.map((item) => (
+            <motion.div className="hidden md:flex items-center">
+              <motion.ul className="flex items-center gap-8">
+                {navLinks.map((item, index) => (
                   <motion.li
                     key={item}
-                    className='text-md font-semibold text-gray-400 cursor-pointer'
+                    className="text-sm font-medium text-white cursor-pointer relative"
                     variants={desktopLinkItemVariants}
                     whileHover="hover"
                     whileTap="tap"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        delay: 0.1 + index * 0.1,
+                        duration: 0.5,
+                        ease: "easeOut",
+                      },
+                    }}
                   >
                     {item}
+                    <motion.div
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-slate-800 dark:bg-slate-200 rounded-full"
+                      initial={{ scaleX: 0 }}
+                      whileHover={{ scaleX: 1 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    />
                   </motion.li>
                 ))}
               </motion.ul>
             </motion.div>
 
-            
             <div className="md:hidden flex items-center">
               <HamburgerIcon isOpen={isMobileMenuOpen} toggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
             </div>
@@ -204,37 +260,36 @@ const Navbar = () => {
         </motion.div>
       </motion.div>
 
-      
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden fixed inset-x-0 top-[calc(theme(spacing.5)_+_60px)] z-40 mt-2 mx-auto w-[90%]  overflow-hidden" // Position 
+            className="md:hidden fixed inset-x-0 top-24 z-40 mx-4"
             initial="closed"
             animate="open"
             exit="closed"
             variants={mobileMenuVariants}
           >
-            <div className="bg-gray-800/90 backdrop-blur-lg shadow-xl shadow-purple-500/20 rounded-lg p-6 border border-gray-600/50">
-                <motion.ul className='flex flex-col items-center gap-6'>
-                {navLinks.map((item) => (
-                    <motion.li
+            <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl shadow-xl rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50">
+              <motion.ul className="flex flex-col gap-1">
+                {navLinks.map((item, index) => (
+                  <motion.li
                     key={item}
-                    className='text-lg font-semibold text-gray-200 cursor-pointer w-full text-center py-2'
-                    variants={mobileLinkItemVariants} 
+                    className="text-base font-medium text-slate-700 dark:text-slate-200 cursor-pointer px-4 py-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors duration-200"
+                    variants={mobileLinkItemVariants}
                     whileHover="hover"
                     whileTap="tap"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    >
+                  >
                     {item}
-                    </motion.li>
+                  </motion.li>
                 ))}
-                </motion.ul>
+              </motion.ul>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

@@ -6,6 +6,7 @@ import { motion} from "framer-motion";
 import {Unchain} from './Chain';
 import NftCard from './HeroCard';
 import { Spotlight } from './ui/spotlight';
+import { Button } from './ui/moving-border';
 
 const HeroSection = () => {
 
@@ -132,12 +133,13 @@ const HeroSection = () => {
           </motion.p>
 
          
-          <motion.button
-             variants={subheadingVariants} 
-             className='mt-6 px-8 py-3 bg-gradient-to-bl from-gray-900 to-gray-700 text-white font-semibold rounded-lg  transition-all duration-300 transform hover:scale-105 text-lg'
-           >
-             Get Started
-           </motion.button>
+           <Button
+        borderRadius="1rem"
+        className=" bg-[#0a0a0a]  text-white border-gray-800 dark:border-slate-800"
+        
+      >
+        Join waitlist
+      </Button>
 
         </motion.div>
 
