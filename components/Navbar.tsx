@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client"
 import { useState, useEffect } from "react"
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "framer-motion"
-
+import Link from "next/link"
+//@ts-ignore
 const HamburgerIcon = ({ isOpen, toggle }) => (
   <motion.button
     onClick={toggle}
@@ -64,16 +66,16 @@ const Navbar = () => {
     const previous = scrollY.getPrevious()
 
    
-    if (latest > previous && latest > 150) {
+    if (latest > (previous ?? 0) && latest > 150) {
       setHidden(true)
     } else {
       setHidden(false)
     }
 
-    // Track if page is scrolled for styling changes
+    
     setScrolled(latest > 50)
 
-    // Close mobile menu on scroll
+    
     if (isMobileMenuOpen && latest > (previous ?? 0) + 20) {
       setIsMobileMenuOpen(false)
     }
@@ -185,7 +187,7 @@ const Navbar = () => {
     },
   }
 
-  const navLinks = ["About", "Contact", "How it works"]
+  const navLinks = [{name:"About", link:"/about"}, {name:"Contact", link:"/contact"}]
 
   return (
     <>
@@ -205,8 +207,8 @@ const Navbar = () => {
             transition-all duration-500 ease-out 
             ${
               scrolled
-                ? " dark:bg-slate-900/90 border border-slate-200/50 dark:border-slate-700/50 shadow-lg shadow-slate-900/5"
-                : " dark:bg-slate-900/70 border border-slate-200/30 dark:border-slate-700/30 shadow-sm"
+                ? " dark:bg-slate-900/90 border border-slate-200/50 dark:border-slate-700/50 shadow-lg shadow-slate-900/5 backdrop-blur-lg"
+                : " dark:bg-slate-900/70 border border-slate-200/30 dark:border-slate-700/30 shadow-sm backdrop-blur-lg"
             }
             backdrop-blur-xl
           `}
@@ -225,7 +227,7 @@ const Navbar = () => {
               <motion.ul className="flex items-center gap-8">
                 {navLinks.map((item, index) => (
                   <motion.li
-                    key={item}
+                    key={index}
                     className="text-sm font-medium text-white cursor-pointer relative"
                     variants={desktopLinkItemVariants}
                     whileHover="hover"
@@ -241,7 +243,9 @@ const Navbar = () => {
                       },
                     }}
                   >
-                    {item}
+                    <Link href={item.link}>
+                    {item.name}
+                    </Link>
                     <motion.div
                       className="absolute -bottom-1 left-0 right-0 h-0.5 bg-slate-800 dark:bg-slate-200 rounded-full"
                       initial={{ scaleX: 0 }}
@@ -273,14 +277,16 @@ const Navbar = () => {
               <motion.ul className="flex flex-col gap-1">
                 {navLinks.map((item, index) => (
                   <motion.li
-                    key={item}
+                    key={index}
                     className="text-base font-medium text-slate-700 dark:text-slate-200 cursor-pointer px-4 py-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors duration-200"
                     variants={mobileLinkItemVariants}
                     whileHover="hover"
                     whileTap="tap"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {item}
+                    <Link href={item.link}>
+                    {item.name}
+                    </Link>
                   </motion.li>
                 ))}
               </motion.ul>

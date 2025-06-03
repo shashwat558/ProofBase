@@ -3,6 +3,7 @@ import { Host_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Spotlight } from "@/components/ui/spotlight";
+import { Footer } from "@/components/Footer";
 
 const roboto = Host_Grotesk({
   subsets: ["latin"],
@@ -21,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.className} antialiased bg-black`}
+        className={`${roboto.className} antialiased bg-black overflow-x-hidden`}
       >
         <Spotlight
         className="-top-40 left-0 md:-top-20 md:left-60"
@@ -29,6 +30,7 @@ export default function RootLayout({
       />
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

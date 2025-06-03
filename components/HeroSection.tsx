@@ -5,7 +5,7 @@ import { motion} from "framer-motion";
 
 import {Unchain} from './Chain';
 import NftCard from './HeroCard';
-import { Spotlight } from './ui/spotlight';
+
 import { Button } from './ui/moving-border';
 
 const HeroSection = () => {

@@ -10,14 +10,14 @@ const Spline = dynamic(() => import('@splinetool/react-spline').then(mod => mod.
 
 
 
-export default function Home() {
+export default function Cube() {
   return (
     <main>
       <Spline
         scene="https://prod.spline.design/dAdgigAj9dwps0ou/scene.splinecode" 
 
-        className='min-w-[1200px] h-[600px] bg-transparent'
-        style={{ scale: "0.45",}}
+        className='max-w-[200px] max-h-[600px] bg-transparent'
+        style={{ scale: "0.25",}}
       />
     </main>
   );
