@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 //@ts-ignore
 const HamburgerIcon = ({ isOpen, toggle }) => (
   <motion.button
@@ -218,6 +219,7 @@ const Navbar = () => {
         >
           <motion.div className="flex items-center justify-between">
             <motion.div className="flex h-full items-center" variants={logoVariants} whileHover="hover" whileTap="tap">
+              <Image src={"/logo2.png"} alt="logo" width={50} height={50}/>
               <motion.h1 className="text-2xl sm:text-3xl text-gray-300 font-bold cursor-pointer tracking-tight">
                 ProofBase
               </motion.h1>
