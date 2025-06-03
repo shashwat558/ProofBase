@@ -5,7 +5,8 @@ import { motion} from "framer-motion";
 
 import {Unchain} from './Chain';
 import NftCard from './HeroCard';
-import CoinSolana from './ui/solanaCoin';
+import { Spotlight } from './ui/spotlight';
+
 const HeroSection = () => {
 
   const containerVariants = {
@@ -80,7 +81,10 @@ const HeroSection = () => {
 
   return (
     <div className='min-w-screen min-h-[85vh] md:min-h-[90vh] flex items-center justify-center p-5 relative overflow-hidden backdrop-blur-xl'>
-
+       
+    
+      
+      
       
 
         <motion.div
@@ -100,6 +104,8 @@ const HeroSection = () => {
         initial="hidden"
         animate="visible"
       >
+        
+
         
         <motion.div
           className='flex flex-col justify-center items-center md:items-start text-center md:text-left w-full md:w-1/2 lg:w-3/5 space-y-6 md:space-y-8 order-2 md:order-1'
@@ -137,9 +143,10 @@ const HeroSection = () => {
 
         
         <motion.div
-          className='w-full md:w-1/2 lg:w-2/5 h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] flex justify-center items-center order-1 md:order-2'
+          className='w-full md:w-1/2 lg:w-2/5 h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] flex flex-col justify-center items-center order-1 md:order-2'
           variants={splineVariants}
         >
+          
           <NftCard />
           
         </motion.div>

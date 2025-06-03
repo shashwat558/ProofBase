@@ -161,7 +161,7 @@ const Navbar = () => {
         initial="initial"
         animate={hidden ? "hidden" : "visible"}
         
-        className={`w-full sticky top-5 z-50 flex justify-center items-center`}
+        className={`w-full fixed top-5 z-50 flex justify-center items-center`}
       >
         <motion.div
           className='xl:w-2/3 md:p-3 max-sm:p-4 rounded-xl w-[90%] md:w-full p-5 border-[0.5px] border-gray-600/50 bg-gray-900/80 backdrop-blur-md shadow-2xl shadow-purple-500/30'

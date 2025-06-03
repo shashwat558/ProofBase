@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Host_Grotesk, Roboto_Mono } from "next/font/google";
+import { Host_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { Spotlight } from "@/components/ui/spotlight";
 
 const roboto = Host_Grotesk({
   subsets: ["latin"],
@@ -22,6 +23,10 @@ export default function RootLayout({
       <body
         className={`${roboto.className} antialiased bg-black`}
       >
+        <Spotlight
+        className="-top-40 left-0 md:-top-20 md:left-60"
+        fill="white"
+      />
         <Navbar />
         {children}
       </body>
