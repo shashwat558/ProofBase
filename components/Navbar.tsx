@@ -188,7 +188,7 @@ const Navbar = () => {
     },
   }
 
-  const navLinks = [{name:"About", link:"/about"}, {name:"Contact", link:"/contact"}]
+  const navLinks = [{name:"About", link:"/about"}, {name:"Contact", link:"/contact-us"}, {name: "Our mission", link:"our-mission"}]
 
   return (
     <>
@@ -220,9 +220,11 @@ const Navbar = () => {
           <motion.div className="flex items-center justify-between">
             <motion.div className="flex h-full items-center" variants={logoVariants} whileHover="hover" whileTap="tap">
               <Image src={"/logo2.png"} alt="logo" width={50} height={50}/>
+              <Link href={"/"}>
               <motion.h1 className="text-2xl sm:text-3xl text-gray-300 font-bold cursor-pointer tracking-tight">
                 ProofBase
               </motion.h1>
+              </Link>
             </motion.div>
 
             <motion.div className="hidden md:flex items-center">
