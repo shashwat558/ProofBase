@@ -83,7 +83,7 @@ const HeroSection = () => {
   const subHeadingText = "Mint a dynamic NFT that evolves with every gig you complete. Showcase real, verified work — forever on-chain.";
 
   return (
-    <div className='min-w-screen min-h-[85vh] md:min-h-[90vh] flex items-center justify-center p-5 relative overflow-hidden backdrop-blur-xl'>
+    <div className='min-w-screen min-h-[85vh] md:min-h-[90vh] flex items-center justify-center p-5 relative overflow-hidden backdrop-blur-xl max-sm:mt-10'>
        
     
       

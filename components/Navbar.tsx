@@ -230,8 +230,9 @@ const Navbar = () => {
             <motion.div className="hidden md:flex items-center">
               <motion.ul className="flex items-center gap-8">
                 {navLinks.map((item, index) => (
+                  <Link key={index} href={item.link}>
                   <motion.li
-                    key={index}
+                    
                     className="text-sm font-medium text-white cursor-pointer relative"
                     variants={desktopLinkItemVariants}
                     whileHover="hover"
@@ -247,9 +248,9 @@ const Navbar = () => {
                       },
                     }}
                   >
-                    <Link href={item.link}>
+                    =
                     {item.name}
-                    </Link>
+                    =
                     <motion.div
                       className="absolute -bottom-1 left-0 right-0 h-0.5 bg-slate-800 dark:bg-slate-200 rounded-full"
                       initial={{ scaleX: 0 }}
@@ -257,6 +258,7 @@ const Navbar = () => {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     />
                   </motion.li>
+                  </Link>
                 ))}
               </motion.ul>
             </motion.div>

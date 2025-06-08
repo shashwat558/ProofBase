@@ -37,9 +37,9 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 px-4 sm:py-32">
+      <section className="relative overflow-hidden py-20 px-4 sm:py-32 max-sm:pt-35">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-transparent" />
-        <div className="relative max-w-4xl mx-auto text-center">
+        <div className="relative max-w-4xl mx-auto text-center ">
           <motion.h1 variants={headingVariants} initial="hidden" animate="visible" className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-400 to-gray-600 bg-clip-text text-transparent">
             Reimagining Work.
             <br />
