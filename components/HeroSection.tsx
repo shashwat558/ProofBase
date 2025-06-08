@@ -1,14 +1,16 @@
 "use client"
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion} from "framer-motion";
 
 import {Unchain} from './Chain';
 import NftCard from './HeroCard';
 
 import { Button } from './ui/moving-border';
+import WaitlistModal from './waitlistPopup';
 
 const HeroSection = () => {
+  const [showModal, setShowModal] = useState(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -136,6 +138,7 @@ const HeroSection = () => {
            <Button
         borderRadius="1rem"
         className=" bg-[#0a0a0a]  text-white border-gray-800 dark:border-slate-800"
+         onClick={() => setShowModal(true)}
         
       >
         Join waitlist
@@ -153,6 +156,7 @@ const HeroSection = () => {
           
         </motion.div>
       </motion.div>
+      <WaitlistModal showModal={showModal} setShowModal={setShowModal} />
     </div>
   )
 }

@@ -33,7 +33,7 @@ const borderVariants = {
 
 export const WhySolana = () => {
   return (
-    <section className="relative w-full max-h-[75vh] bg-black overflow-hidden" style={{backgroundImage: `url("/solana.png")` , backgroundSize: 'cover', backgroundPosition: 'center'}}>
+    <section className="relative w-full lg:max-h-[75vh] bg-black overflow-hidden" style={{backgroundImage: `url("/solana.png")` , backgroundSize: 'cover', backgroundPosition: 'center'}}>
         <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
       
       <motion.div 
@@ -68,7 +68,7 @@ export const WhySolana = () => {
           <div className="flex flex-col gap-8">
             <motion.div variants={itemVariants}>
               <h2 className="text-4xl sm:text-5xl font-medium text-gray-100 tracking-tight">
-                Why <span className="text-purple-400">Web3</span> on <span className="text-cyan-400">Solana</span>?
+                Why <span className="text-cyan-400">Solana</span>?
               </h2>
             </motion.div>
             

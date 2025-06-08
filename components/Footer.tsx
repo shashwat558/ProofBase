@@ -16,10 +16,10 @@ export const Footer = () => {
             Building the future of work — decentralized, trustless, and on-chain.
           </p>
           <div className="flex gap-4 mt-2">
-            <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+            <a href="https://twitter.com/proof_base" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
               <Twitter size={20} />
             </a>
-            <a href="https://github.com/yourrepo" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+            <a href="https://github.com/shashwat558" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
               <Github size={20} />
             </a>
           </div>

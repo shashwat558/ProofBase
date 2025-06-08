@@ -4,9 +4,10 @@
 import dynamic from 'next/dynamic'
 
 
-const Spline = dynamic(() => import('@splinetool/react-spline').then(mod => mod.default), {
+const Spline = dynamic(() => import('@splinetool/react-spline'), {
   ssr: false,
-})
+});
+
 
 
 
